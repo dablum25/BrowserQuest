@@ -1,0 +1,24 @@
+FROM node
+
+
+RUN npm install http-server -g
+RUN npm install jquery
+RUN npm install bison
+RUN npm install websocket
+RUN npm install node-websocket-server
+RUN npm install log
+RUN npm install sanitizer
+RUN npm install memcache
+
+ADD bin/* /bin/
+ADD client /client/
+ADD shared /shared/
+
+WORKDIR /bin
+RUN build.sh
+
+EXPOSE 80
+
+WORKDIR /client-build
+
+CMD [ "http-server", "-p 80" ]

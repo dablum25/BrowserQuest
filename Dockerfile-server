@@ -1,0 +1,15 @@
+FROM node
+RUN npm install underscore
+RUN npm install bison
+RUN npm install websocket
+RUN npm install node-websocket-server
+RUN npm install log
+RUN npm install sanitizer
+RUN npm install memcache
+
+ADD server /server/
+ADD shared /shared/
+
+EXPOSE 8000
+
+CMD [ "node", "/server/js/main.js" ]
